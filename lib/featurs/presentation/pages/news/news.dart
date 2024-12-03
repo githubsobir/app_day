@@ -1,17 +1,31 @@
+import 'package:app_day/featurs/presentation/pages/news/new_open.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:persistent_bottom_nav_bar_2/persistent_tab_view.dart';
 
 Widget carouselMain(
     {required BuildContext context,}) {
 
 
-  return  CarouselSlider(
-    options: CarouselOptions(
-      autoPlay: true,
-      aspectRatio: 2.0,
-      enlargeCenterPage: true,
+  return  GestureDetector(
+    onTap: (){
+      PersistentNavBarNavigator.pushNewScreen(
+        context,
+        screen: NewsOpen(),
+        withNavBar: false,
+        // OPTIONAL VALUE. True by default.
+        pageTransitionAnimation:
+        PageTransitionAnimation.cupertino,
+      );
+    },
+    child: CarouselSlider(
+      options: CarouselOptions(
+        autoPlay: true,
+        aspectRatio: 2.0,
+        enlargeCenterPage: true,
+      ),
+      items: imageSliders,
     ),
-    items: imageSliders,
   );
 }
 
