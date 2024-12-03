@@ -13,6 +13,7 @@ class _NewsOpenState extends State<NewsOpen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.white100,
       appBar: AppBar(
         title: Text(
           "Yangiliklar",
