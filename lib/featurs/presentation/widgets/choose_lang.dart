@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:app_day/featurs/data/hive_saved/hive_saved.dart';
+import 'package:app_day/core/hive_saved/hive_saved.dart';
 import 'package:app_day/featurs/presentation/pages/root_page/root_page.dart';
 import 'package:app_day/featurs/presentation/widgets/colors_app.dart';
 import 'package:app_day/featurs/presentation/widgets/widget_mini/image_logo.dart';

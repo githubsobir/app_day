@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:app_day/featurs/data/hive_saved/hive_saved.dart';
+import 'package:app_day/core/hive_saved/hive_saved.dart';
 import 'package:app_day/featurs/presentation/pages/root_page/root_page.dart';
 import 'package:app_day/featurs/presentation/widgets/choose_lang.dart';
 import 'package:app_day/featurs/presentation/widgets/colors_app.dart';
@@ -29,7 +29,7 @@ void main() async {
 
   await EasyLocalization.ensureInitialized();
   await Hive.initFlutter();
-  await Hive.openBox("turin");
+  await Hive.openBox("standartk");
 
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     systemNavigationBarColor: AppColors.appActiveColor, // navigation bar color
@@ -103,10 +103,7 @@ class _MyAppState extends State<MyApp> {
   Widget mainPage() {
     if (box.lang == "-" || box.lang.isEmpty) {
       return ChooseLang(windowId: "0");
-    } else if (box.userToken.length > 10) {
-      // screenLock123();
-      return  RootPage(passwordOnOff: "1");
-    } else {
+    }  else {
       return RootPage(passwordOnOff: "1");
     }
   }

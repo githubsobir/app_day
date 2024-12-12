@@ -140,5 +140,6 @@
     "other": "{} days left"
   },
   "currentPassword": "Enter your current password",
-  "help": "Help"
+  "help": "Help",
+  "again": "More"
 }

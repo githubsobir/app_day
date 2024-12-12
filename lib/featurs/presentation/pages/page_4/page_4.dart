@@ -1,4 +1,4 @@
-import 'package:app_day/featurs/data/hive_saved/hive_saved.dart';
+import 'package:app_day/core/hive_saved/hive_saved.dart';
 import 'package:app_day/featurs/presentation/widgets/choose_lang.dart';
 import 'package:app_day/featurs/presentation/widgets/colors_app.dart';
 import 'package:app_day/generated/assets.dart';
@@ -18,14 +18,7 @@ class AccountPageShow extends ConsumerStatefulWidget {
 class _AccountPageShowState extends ConsumerState<AccountPageShow> {
   var box = AppSaved();
 
-  double sliderValue() {
-    try {
-      double d = (1 - double.parse(box.faceIdQolganKun) / 30).abs();
-      return d;
-    } catch (e) {
-      return 0.3;
-    }
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +56,7 @@ class _AccountPageShowState extends ConsumerState<AccountPageShow> {
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(100),
                               child: Image.network(
-                                box.profileImageUrl,
+                               " box.profileImageUrl",
                                 errorBuilder: (context, error, stackTrace) =>
                                     Container(
                                         height: 100,
@@ -80,7 +73,7 @@ class _AccountPageShowState extends ConsumerState<AccountPageShow> {
                           const SizedBox(height: 16),
                           Center(
                             child: Text(
-                              box.role,
+                              "box.role",
                               style: TextStyle(
                                   fontSize: 16,
                                   color: AppColors.black,
@@ -250,7 +243,7 @@ class _AccountPageShowState extends ConsumerState<AccountPageShow> {
               ),
               onPressed: () {
                 // zxc
-                box.deleteUserInfo();
+                box.deleteAll();
                 Navigator.pushAndRemoveUntil(
                   context,
                   CupertinoPageRoute(
