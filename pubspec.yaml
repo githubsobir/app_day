@@ -36,6 +36,7 @@ flutter:
     - assets/images/
     - assets/lang/
     - assets/fonts/
+    - lib/core/hive_saved/hive_saved.dart
 
   fonts:
     - family: Caveat
