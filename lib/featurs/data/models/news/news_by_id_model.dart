@@ -2,10 +2,11 @@ import 'package:app_day/featurs/domain/entities/news_by_id.dart';
 
 class NewByIdModel extends NewById {
   NewByIdModel(
-      {required super.content,
-      required super.url,
-      required super.title,
-      required super.updatedAt});
+      {
+       super.content,
+       super.url,
+       super.title,
+       super.updatedAt});
 
   factory NewByIdModel.fromJson(Map<String, dynamic> json) => NewByIdModel(
     content: json["content"],

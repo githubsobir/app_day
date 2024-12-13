@@ -16,30 +16,29 @@ class _Page3State extends State<Page3> {
   List<String> _list = [
     "Fuqarolarni qabul qilish jadvali",
     "Ishonch telefonlari",
-    "Direktorga murojaat",
     "Bog'lanish",
-    "Telefon raqamlari to‘g‘risida ma’lumot",
-    "Korruptsiya haqida xabar berish",
+    "Telefon raqamlari to‘g‘risida ma’lumot"
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: AppColors.appActiveColor,
           title: Text(
             "help".tr(),
             style: TextStyle(
                 color: AppColors.white100, fontWeight: FontWeight.bold),
           ),
         ),
-        backgroundColor: AppColors.white100,
+
         body: SafeArea(
           child: Container(
             margin: EdgeInsets.all(15),
             child: ListView.builder(
-              itemCount: _list.length,
-              itemBuilder: (context, index) => Card(
+              itemCount: _list.length+1,
+              itemBuilder: (context, index) =>
+                  index != _list.length?
+                  Card(
                   color: AppColors.white100,
                   child: ListTile(
                     onTap: () {
@@ -52,16 +51,19 @@ class _Page3State extends State<Page3> {
                                   pageTransitionAnimation:
                                       PageTransitionAnimation.cupertino)
                             }
-                          : index == 1?{
-                        {
-                          PersistentNavBarNavigator.pushNewScreen(context,
-                              screen: Call(),
-                              withNavBar: false,
-                              // OPTIONAL VALUE. True by default.
-                              pageTransitionAnimation:
-                              PageTransitionAnimation.cupertino)
-                        }
-                      }:{};
+                          : index == 1
+                              ? {
+                                  {
+                                    PersistentNavBarNavigator.pushNewScreen(
+                                        context,
+                                        screen: Call(),
+                                        withNavBar: false,
+                                        // OPTIONAL VALUE. True by default.
+                                        pageTransitionAnimation:
+                                            PageTransitionAnimation.cupertino)
+                                  }
+                                }
+                              : {};
                     },
                     leading: Text(
                       "${index + 1}",
@@ -73,7 +75,7 @@ class _Page3State extends State<Page3> {
                       style: TextStyle(
                           color: AppColors.black, fontWeight: FontWeight.bold),
                     ),
-                  )),
+                  )):Container(height: 40, color: Colors.white, width: double.infinity,),
             ),
           ),
         ));

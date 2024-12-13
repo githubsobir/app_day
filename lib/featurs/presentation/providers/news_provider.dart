@@ -1,7 +1,7 @@
 import 'dart:developer';
 
-import 'package:app_day/featurs/data/datasources/news/news_local.dart';
-import 'package:app_day/featurs/data/datasources/news/news_remote.dart';
+import 'package:app_day/featurs/data/datasources/news_banner/news_local.dart';
+import 'package:app_day/featurs/data/datasources/news_banner/news_remote.dart';
 import 'package:app_day/featurs/data/repositories/news/news.dart';
 import 'package:app_day/featurs/domain/entities/news.dart';
 import 'package:app_day/featurs/domain/repositories/news_repository.dart';

@@ -5,8 +5,9 @@ class News {
   dynamic updatedAt;
 
   News(
-      {required this.id,
-      required this.url,
-      required this.title,
-      required this.updatedAt});
+      {
+       this.id,
+       this.url,
+       this.title,
+       this.updatedAt});
 }

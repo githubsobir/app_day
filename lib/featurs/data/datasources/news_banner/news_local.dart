@@ -11,11 +11,11 @@ class NewsLocalDataSource {
   NewsLocalDataSource(this.box);
 
   Future<void> cacheNews(List<News> newsModel) async {
-    await box.put('news',jsonEncode(newsModel).toString());
+    await box.put('news_banner',jsonEncode(newsModel).toString());
   }
 
   List<News> getCachedNews() {
-    final cachedData = box.get('news');
+    final cachedData = box.get('news_banner');
     return (jsonDecode(cachedData) as List).map((e) => NewsModel.fromJson(e)).toList();
   }
 }

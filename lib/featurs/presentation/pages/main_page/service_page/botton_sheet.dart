@@ -1,4 +1,5 @@
 import 'package:app_day/featurs/domain/entities/main_service.dart';
+import 'package:app_day/featurs/presentation/pages/main_page/html_page.dart';
 import 'package:app_day/featurs/presentation/pages/main_page/service_page/service_page.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -9,24 +10,22 @@ showGridView(int index, List<Datum> root, String name, BuildContext context) {
     showDragHandle: true,
     context: context,
     enableDrag: true,
-    backgroundColor: Colors.white,
+    isScrollControlled: false,
+    // backgroundColor: Colors.white,
     builder: (context) {
       return Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 10),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text(
-              name,
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
-            ),
+            child: Text(name,
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
           ),
-          SizedBox(height: 10),
+          SizedBox(height: 7),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(5.0),
               child: GridView.builder(
                 itemCount: root.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -34,35 +33,50 @@ showGridView(int index, List<Datum> root, String name, BuildContext context) {
                     childAspectRatio: 1,
                     crossAxisSpacing: 5,
                     mainAxisSpacing: 5),
-                itemBuilder: (context, ix) => Container(
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey, width: 0.5),
-                      borderRadius: BorderRadius.circular(10)),
-                  child: GestureDetector(
-                    onTap: (){
-                      PersistentNavBarNavigator.pushNewScreen(
-                        context,
+                itemBuilder: (context, ix) => GestureDetector(
+                  onTap: () {
+                    root[ix].children.isNotEmpty
+                        ? PersistentNavBarNavigator.pushNewScreen(context,
                         screen: ServicePage(
-                            name: root[ix]
-                                .name,
-                            children: root[ix]
-                                .children),
+                            name: root[ix].name,
+                            children: root[ix].children),
                         withNavBar: false,
                         // OPTIONAL VALUE. True by default.
                         pageTransitionAnimation:
-                        PageTransitionAnimation.cupertino,
-                      );
-                    },
+                        PageTransitionAnimation.cupertino)
+                        : PersistentNavBarNavigator.pushNewScreen(context,
+                        screen: HtmlPage(
+                            idHtml: root[ix].id.toString(),
+                            titleName: root[ix].name),
+                        withNavBar: false,
+                        // OPTIONAL VALUE. True by default.
+                        pageTransitionAnimation:
+                        PageTransitionAnimation.cupertino);
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(3),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(color: Colors.grey.shade300, blurRadius: 0.4, spreadRadius: 1)
+                        ],
+
+                        borderRadius: BorderRadius.circular(10)),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        CachedNetworkImage(
-                          imageUrl: root[ix].icon.toString(),
-                          height: 80,
-                          fit: BoxFit.fill,
-                          errorWidget: (context, url, error) =>
-                              Text(url),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(4),
+                          child: CachedNetworkImage(
+                            imageUrl: root[ix].icon.toString(),
+                            height: 80,
+                            fit: BoxFit.fill,
+                            errorWidget: (context, url, error) => Icon(
+                                Icons.image,
+                                size: 30,
+                                color: Colors.blue.shade900),
+                          ),
                         ),
                         Text(
                           root[ix].name.toString(),

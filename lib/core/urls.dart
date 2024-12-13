@@ -16,6 +16,11 @@ class MainUrl {
   /// banner
   static String bannerWithId = "/banner/view?id=";
 
+  /// news list
+  static String newsList = "/banner/index";
+
+
+  ///
   var box = AppSaved();
 
   Map<String, dynamic> header() {

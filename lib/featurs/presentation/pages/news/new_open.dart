@@ -1,7 +1,6 @@
 import 'package:app_day/featurs/presentation/providers/new_by_id.dart';
 import 'package:app_day/featurs/presentation/widgets/colors_app.dart';
 import 'package:app_day/featurs/presentation/widgets/widget_mini/loading.dart';
-import 'package:app_day/featurs/presentation/widgets/widget_mini/size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
@@ -9,8 +8,9 @@ import 'package:url_launcher/url_launcher.dart';
 
 class NewsOpen extends ConsumerStatefulWidget {
   final String newId;
+  final String title;
 
-  const NewsOpen({super.key, required this.newId});
+  const NewsOpen({super.key, required this.newId, required this.title});
 
   @override
   ConsumerState<NewsOpen> createState() => _NewsOpenState();
@@ -25,7 +25,7 @@ class _NewsOpenState extends ConsumerState<NewsOpen> {
         backgroundColor: AppColors.white100,
         appBar: AppBar(
           title: Text(
-            "Yangiliklar",
+            widget.title.toString(),
             style: TextStyle(color: Colors.white),
           ),
           backgroundColor: AppColors.appActiveColor,

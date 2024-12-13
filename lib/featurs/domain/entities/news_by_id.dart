@@ -5,8 +5,9 @@ class NewById {
   dynamic updatedAt;
 
   NewById(
-      {required this.content,
-        required this.url,
-        required this.title,
-        required this.updatedAt});
+      {
+         this.content,
+         this.url,
+         this.title,
+         this.updatedAt});
 }

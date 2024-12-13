@@ -41,11 +41,11 @@ class _ChooseLangState extends State<ChooseLang> {
         );
       } else if (widget.windowId == "1") {
 
-        // Navigator.pushAndRemoveUntil(
-        //     context,
-        //     CupertinoPageRoute(builder: (context) => RootPage(passwordOnOff: "0",),),
-        //         (route) => false
-        // );
+        Navigator.pushAndRemoveUntil(
+            context,
+            CupertinoPageRoute(builder: (context) => RootPage(passwordOnOff: "0",),),
+                (route) => false
+        );
       }
     } catch (e) {
       log("onTapButtons");

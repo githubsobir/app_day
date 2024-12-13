@@ -14,10 +14,8 @@ class HtmlRemoteDataSource {
 
   Future<HtmlModel> getHtmls(final String idService) async {
     log("${MainUrl.mainUrl}/content/index?tree_id=$idService");
-    log("${MainUrl.mainUrl}/content/index?tree_id=161");
-
     final response = await dio.get(
-        "${MainUrl.mainUrl}${MainUrl.htmlViewById}161",
+        "${MainUrl.mainUrl}${MainUrl.htmlViewById}$idService",
         options: Options(headers: header.header()));
 
     // log((response.data).toString());

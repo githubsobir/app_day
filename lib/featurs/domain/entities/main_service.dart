@@ -1,8 +1,8 @@
 class Post {
-  final bool success;
+  final dynamic success;
   final List<Datum> data;
 
-  Post({required this.success, required this.data});
+  Post({this.success, required this.data});
 }
 
 class Datum {
@@ -11,5 +11,5 @@ class Datum {
   final dynamic icon;
   final List<Datum> children;
 
-  Datum({required this.id, required this.name, this.icon, required this.children});
+  Datum({this.id, this.name, this.icon, required this.children});
 }

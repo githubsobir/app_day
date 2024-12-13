@@ -20,7 +20,7 @@ class MyHttpOverrides extends HttpOverrides {
   }
 }
 
-GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+// GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
 
@@ -88,7 +88,7 @@ class _MyAppState extends State<MyApp> {
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
             locale: context.locale,
-            navigatorKey: navigatorKey,
+            // navigatorKey: navigatorKey,
             theme: ThemeData(
                 fontFamily: "Nunito",
                 appBarTheme: AppBarTheme(

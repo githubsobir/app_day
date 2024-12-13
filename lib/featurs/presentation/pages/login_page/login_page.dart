@@ -1,4 +1,3 @@
-import 'package:app_day/featurs/presentation/pages/page_4/page_4.dart';
 import 'package:app_day/featurs/presentation/widgets/colors_app.dart';
 import 'package:app_day/featurs/presentation/widgets/widget_mini/image_logo.dart';
 import 'package:easy_localization/easy_localization.dart';
