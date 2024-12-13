@@ -7,7 +7,6 @@ import 'package:app_day/featurs/data/repositories/main_page/post_repository_impl
 import 'package:app_day/featurs/domain/entities/main_service.dart';
 import 'package:app_day/featurs/domain/repositories/post_repository.dart';
 import 'package:app_day/featurs/domain/usecases/get_post.dart';
-import 'package:app_day/featurs/domain/usecases/search_main.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/adapters.dart';

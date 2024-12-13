@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:app_day/featurs/presentation/providers/post_provider.dart';
 import 'package:app_day/featurs/presentation/widgets/colors_app.dart';
@@ -20,9 +19,7 @@ class _Page2State extends ConsumerState<Page2> {
 
   @override
   Widget build(BuildContext context) {
-    final searchQuery = ref.watch(searchQueryProvider);
     final items = ref.watch(filteredItemsProvider);
-    TextEditingController txtSearch = TextEditingController();
 
 
     return Scaffold(

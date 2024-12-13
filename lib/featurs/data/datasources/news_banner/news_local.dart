@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:app_day/featurs/data/models/main/post_model.dart';
 import 'package:app_day/featurs/data/models/news/news_model.dart';
 import 'package:app_day/featurs/domain/entities/news.dart';
 import 'package:hive/hive.dart';
