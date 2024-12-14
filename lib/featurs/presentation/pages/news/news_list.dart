@@ -22,7 +22,6 @@ class _NewsListState extends ConsumerState<NewsList> {
     var refData = ref.watch(newsListProvider);
 
     return Scaffold(
-      backgroundColor: AppColors.white100,
       appBar: AppBar(
         backgroundColor: AppColors.appActiveColor,
         centerTitle: true,
@@ -40,28 +39,30 @@ class _NewsListState extends ConsumerState<NewsList> {
           return ListView.builder(
               itemCount: data.length,
               itemBuilder: (context, index) => GestureDetector(
-                onTap: (){
-                  PersistentNavBarNavigator.pushNewScreen(
-                    context,
-                    screen: NewsOpen(
-                      newId: data[index].id.toString(),
-                      title: data[index].title.toString()
-                    ),
-                    withNavBar: false,
-                    // OPTIONAL VALUE. True by default.
-                    pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                  );
-                },
-                child: Card(
-                  color: Colors.white,
+                    onTap: () {
+                      PersistentNavBarNavigator.pushNewScreen(
+                        context,
+                        screen: NewsOpen(
+                            newId: data[index].id.toString(),
+                            title: data[index].title.toString()),
+                        withNavBar: false,
+                        // OPTIONAL VALUE. True by default.
+                        pageTransitionAnimation:
+                            PageTransitionAnimation.cupertino,
+                      );
+                    },
+                    child: Card(
+                      color: Colors.white,
                       child: Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
                         child: Column(
                           children: [
                             Stack(
                               children: [
                                 ClipRRect(
-                                  borderRadius: BorderRadius.circular(10),
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(8),
+                                      topRight: Radius.circular(8)),
                                   child: CachedNetworkImage(
                                       height: 220,
                                       width: AppSize.w(context: context),
@@ -75,28 +76,37 @@ class _NewsListState extends ConsumerState<NewsList> {
                                     alignment: Alignment.bottomRight,
                                     child: Container(
                                       margin: EdgeInsets.all(2),
-                                      padding: EdgeInsets.fromLTRB(3,1,3,1),
+                                      padding: EdgeInsets.fromLTRB(3, 1, 3, 1),
                                       decoration: BoxDecoration(
-                                          color: Colors.grey.withOpacity(0.7),
-                                          borderRadius: BorderRadius.circular(5)),
+                                          color: Colors.grey.withOpacity(0.8),
+                                          borderRadius:
+                                              BorderRadius.circular(5)),
                                       child: Text(
                                           DateFormat('kk:mm dd-MM-yyyy').format(
                                               DateTime.parse(data[index]
                                                   .updatedAt
                                                   .toString())),
-                                          style: TextStyle(color: Colors.white)),
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w600)),
                                     ),
                                   ),
                                 )
                               ],
                             ),
                             SizedBox(height: 5),
-                            Text(data[index].title.toString())
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(6, 2, 4, 2),
+                              child: Text(
+                                data[index].title.toString(),
+                                style: TextStyle(fontWeight: FontWeight.w600),
+                              ),
+                            )
                           ],
                         ),
                       ),
                     ),
-              ));
+                  ));
         }, error: (error, errorText) {
           return Center(child: Text(errorText.toString()));
         }, loading: () {

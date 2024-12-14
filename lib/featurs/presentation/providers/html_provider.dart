@@ -11,7 +11,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive/hive.dart';
 
 final htmlProvider =
-    StateNotifierProvider.family<HtmlNotifier, AsyncValue<Htmls>, String>(
+    StateNotifierProvider.autoDispose.family<HtmlNotifier, AsyncValue<Htmls>, String>(
   (ref, idHtml) => HtmlNotifier(ref.read(getPostsUseCaseProvider(idHtml))),
 );
 

@@ -1,9 +1,10 @@
 import 'dart:developer';
 
+import 'package:app_day/featurs/presentation/pages/login_page/login_page.dart';
 import 'package:app_day/featurs/presentation/pages/main_page/html_page.dart';
 import 'package:app_day/featurs/presentation/pages/main_page/service_page/botton_sheet.dart';
 import 'package:app_day/featurs/presentation/pages/main_page/service_page/service_page.dart';
-import 'package:app_day/featurs/presentation/pages/news/news.dart';
+import 'package:app_day/featurs/presentation/pages/news/carousel_news.dart';
 import 'package:app_day/featurs/presentation/pages/news/news_list.dart';
 import 'package:app_day/featurs/presentation/providers/post_provider.dart';
 import 'package:app_day/featurs/presentation/widgets/choose_lang.dart';
@@ -30,7 +31,6 @@ class _MainPageState extends ConsumerState<MainPage> {
     final postsState = ref.watch(postProvider);
 
     return Scaffold(
-      // backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
         elevation: 0,
@@ -62,52 +62,69 @@ class _MainPageState extends ConsumerState<MainPage> {
       ),
       drawer: Drawer(
         backgroundColor: Colors.white,
-        child: SafeArea(
-            child: Container(
-          margin: EdgeInsets.all(5),
-          child: Column(
-            children: [
-              imageLogo(),
-              SizedBox(height: 20),
-              ListTile(
-                onTap: () {},
-                leading: Icon(
-                  Icons.person,
-                  color: AppColors.appActiveColor,
-                ),
-                title: Text(
-                  "enterSystem".tr(),
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                subtitle: Text("http://forms.standart.uz"),
-                trailing: Icon(Icons.arrow_forward_ios_rounded),
+        child: Column(
+          children: [
+            Container(
+              color: AppColors.appActiveColor,
+              child: Column(
+                children: [
+                  SizedBox(height: 60),
+                  imageLogo(),
+                  SizedBox(height: 40),
+                ],
               ),
-              ListTile(
-                onTap: () {
-                  PersistentNavBarNavigator
-                      .pushNewScreen(
-                    context,
-                    screen: ChooseLang(windowId: "0"),
-                    withNavBar: false,
-                    // OPTIONAL VALUE. True by default.
-                    pageTransitionAnimation:
-                    PageTransitionAnimation
-                        .cupertino,
-                  );
-                },
-                leading: Icon(
-                  Icons.language,
-                  color: AppColors.appActiveColor,
+            ),
+
+            Expanded(
+                child: Column(
+              children: [
+                ListTile(
+                  onTap: () {
+                    PersistentNavBarNavigator.pushNewScreen(
+                      context,
+                      screen: LoginPage(),
+                      withNavBar: false,
+                      // OPTIONAL VALUE. True by default.
+                      pageTransitionAnimation:
+                          PageTransitionAnimation.cupertino,
+                    );
+                  },
+                  leading: Icon(
+                    Icons.person,
+                    color: AppColors.appActiveColor,
+                  ),
+                  title: Text(
+                    "enterSystem".tr(),
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  subtitle: Text("http://forms.standart.uz"),
+                  trailing: Icon(Icons.arrow_forward_ios_rounded),
                 ),
-                title: Text(
-                  "lang".tr(),
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                trailing: Icon(Icons.arrow_forward_ios_rounded),
-              )
-            ],
-          ),
-        )),
+                ListTile(
+                  onTap: () {
+                    PersistentNavBarNavigator.pushNewScreen(
+                      context,
+                      screen: ChooseLang(windowId: "0"),
+                      withNavBar: false,
+                      // OPTIONAL VALUE. True by default.
+                      pageTransitionAnimation:
+                          PageTransitionAnimation.cupertino,
+                    );
+                  },
+                  leading: Icon(
+                    Icons.language,
+                    color: AppColors.appActiveColor,
+                  ),
+                  title: Text(
+                    "lang".tr(),
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  trailing: Icon(Icons.arrow_forward_ios_rounded),
+                )
+              ],
+            ))
+          ],
+        ),
       ),
       body: postsState.when(
           loading: () => appLoading(),
@@ -126,7 +143,10 @@ class _MainPageState extends ConsumerState<MainPage> {
                         height: 210,
                         child: Column(
                           children: [
-                            SizedBox(
+                            Container(
+                                decoration: BoxDecoration(
+                                    color: AppColors.grey.withOpacity(0.1),
+                                    borderRadius: BorderRadius.circular(8)),
                                 height: 50,
                                 width: AppSize.w(context: context),
                                 child: Row(
@@ -138,12 +158,21 @@ class _MainPageState extends ConsumerState<MainPage> {
                                       child: SizedBox(
                                         width:
                                             AppSize.w(context: context) * 0.7,
-                                        child: Text(
-                                          list[index - 1].name,
-                                          maxLines: 2,
-                                          style: TextStyle(
-                                              fontSize: 17,
-                                              fontWeight: FontWeight.bold),
+                                        child: GestureDetector(
+                                          onTap: () async {
+                                            showGridView(
+                                                index,
+                                                list[index - 1].children,
+                                                list[index - 1].name.toString(),
+                                                context);
+                                          },
+                                          child: Text(
+                                            list[index - 1].name,
+                                            maxLines: 2,
+                                            style: TextStyle(
+                                                fontSize: 17,
+                                                fontWeight: FontWeight.bold),
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -177,8 +206,15 @@ class _MainPageState extends ConsumerState<MainPage> {
                                 itemCount: list[index - 1].children.length,
                                 itemBuilder: (context, id2) => GestureDetector(
                                   onTap: () {
-                                    log(    list[index - 1].children[id2].children. length.toString());
-                                    list[index - 1].children[id2].children.isNotEmpty
+                                    log(list[index - 1]
+                                        .children[id2]
+                                        .children
+                                        .length
+                                        .toString());
+                                    list[index - 1]
+                                            .children[id2]
+                                            .children
+                                            .isNotEmpty
                                         ? PersistentNavBarNavigator
                                             .pushNewScreen(
                                             context,
@@ -221,7 +257,10 @@ class _MainPageState extends ConsumerState<MainPage> {
                                         color: Colors.white,
                                         borderRadius: BorderRadius.circular(10),
                                         boxShadow: [
-                                          BoxShadow(color: Colors.grey.shade300, blurRadius: 0.5, spreadRadius: 1.5)
+                                          BoxShadow(
+                                              color: Colors.grey.shade300,
+                                              blurRadius: 0.5,
+                                              spreadRadius: 1.5)
                                         ],
                                         border: Border.all(
                                             width: 0.5, color: Colors.grey)),
@@ -234,35 +273,34 @@ class _MainPageState extends ConsumerState<MainPage> {
                                         ClipRRect(
                                           borderRadius:
                                               BorderRadius.circular(3),
-                                          child:
-                                          list[index - 1]
-                                              .children[id2]
-                                              .icon
-                                              .toString() != "null"?
-                                          CachedNetworkImage(
-                                            imageUrl: list[index - 1]
-                                                .children[id2]
-                                                .icon
-                                                .toString(),
-                                            height: 80,
-                                            fit: BoxFit.fill,
-
-                                            errorWidget:
-                                                (context, url, error) => Icon(
-                                                    Icons.image,
-                                                    size: 30,
-                                                    color:
-                                                        Colors.blue.shade900),
-                                          ):SizedBox(
-                                            height: 80,
-                                            child: Center(
-                                              child: Icon(
-                                                  Icons.image,
-                                                  size: 30,
-                                                  color:
-                                                  Colors.blue.shade900),
-                                            ),
-                                          ),
+                                          child: list[index - 1]
+                                                      .children[id2]
+                                                      .icon
+                                                      .toString() !=
+                                                  "null"
+                                              ? CachedNetworkImage(
+                                                  imageUrl: list[index - 1]
+                                                      .children[id2]
+                                                      .icon
+                                                      .toString(),
+                                                  height: 80,
+                                                  fit: BoxFit.fill,
+                                                  errorWidget:
+                                                      (context, url, error) =>
+                                                          Icon(Icons.image,
+                                                              size: 30,
+                                                              color: Colors.blue
+                                                                  .shade900),
+                                                )
+                                              : SizedBox(
+                                                  height: 80,
+                                                  child: Center(
+                                                    child: Icon(Icons.image,
+                                                        size: 30,
+                                                        color: Colors
+                                                            .blue.shade900),
+                                                  ),
+                                                ),
                                         ),
                                         Text(
                                           list[index - 1]
@@ -280,7 +318,6 @@ class _MainPageState extends ConsumerState<MainPage> {
                                 ),
                               ),
                             ),
-
                           ],
                         ),
                       ),

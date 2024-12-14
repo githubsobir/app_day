@@ -1,4 +1,4 @@
-
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:app_day/featurs/data/datasources/main_page/post_local_data_source.dart';
@@ -12,7 +12,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/adapters.dart';
 
 final postProvider = StateNotifierProvider<PostNotifier, AsyncValue<Post>>(
-      (ref) => PostNotifier(ref.read(getPostsUseCaseProvider)),
+  (ref) => PostNotifier(ref.read(getPostsUseCaseProvider)),
 );
 
 class PostNotifier extends StateNotifier<AsyncValue<Post>> {
@@ -47,32 +47,32 @@ final postRepositoryProvider = Provider<PostRepository>((ref) {
   );
 });
 
-final postRemoteDataSourceProvider = Provider((ref) => PostRemoteDataSource(ref.read(dioProvider)));
-final postLocalDataSourceProvider = Provider((ref) => PostLocalDataSource(ref.read(hiveBoxProvider)));
+final postRemoteDataSourceProvider =
+    Provider((ref) => PostRemoteDataSource(ref.read(dioProvider)));
+final postLocalDataSourceProvider =
+    Provider((ref) => PostLocalDataSource(ref.read(hiveBoxProvider)));
 final dioProvider = Provider((ref) => Dio());
 final hiveBoxProvider = Provider((ref) => Hive.box('standartk'));
-
-
-
-
 
 final searchQueryProvider = StateProvider<String>((ref) => '');
 
 final filteredItemsProvider = Provider<List<Datum>>((ref) {
   final query = ref.watch(searchQueryProvider);
+
   final items = ref.read(postLocalDataSourceProvider);
-  // final items = ref.read(postRepositoryProvider);// ref.watch(postRepositoryProvider);
+
   final searchItems = SearchItems();
-  return searchItems(query, items.getCachedPosts());
+  return searchItems(query, items.getCachedPostAllOneList());
 });
 
 class SearchItems {
-
-  List<Datum> call(String query, Post items) {
+  List<Datum> call(String query, List<Datum> items) {
     if (query.isEmpty) {
-      return [];
+      return items;
     }
-    return items.data.where((item) => item.name.toLowerCase().contains(query.toLowerCase()))
+    log(jsonEncode(items).toString());
+    return items
+        .where((item) => item.name.toLowerCase().contains(query.toLowerCase()))
         .toList();
   }
 }

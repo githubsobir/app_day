@@ -18,7 +18,6 @@ class _ServicePageState extends State<ServicePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.white100,
       appBar: AppBar(
         backgroundColor: AppColors.appActiveColor,
         title: Text(
@@ -34,6 +33,7 @@ class _ServicePageState extends State<ServicePage> {
         child: ListView.builder(
           itemCount: widget.children.length,
           itemBuilder: (context, index) => Card(
+            color: AppColors.white100,
             child: ListTile(
               onTap: () {
                 widget.children[index].children.isEmpty

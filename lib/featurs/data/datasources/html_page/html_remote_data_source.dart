@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:app_day/core/urls.dart';
@@ -13,18 +14,23 @@ class HtmlRemoteDataSource {
   });
 
   Future<HtmlModel> getHtmls(final String idService) async {
-    log("${MainUrl.mainUrl}/content/index?tree_id=$idService");
-    final response = await dio.get(
-        "${MainUrl.mainUrl}${MainUrl.htmlViewById}$idService",
-        options: Options(headers: header.header()));
-
-    // log((response.data).toString());
+    log("${MainUrl.mainUrl}${MainUrl.htmlViewById}$idService");
+    log(jsonEncode(header.header()));
+    final response =
+        await dio.get("${MainUrl.mainUrl}${MainUrl.htmlViewById}$idService",
+            // "${MainUrl.mainUrl}${MainUrl.htmlViewById}$idService",
+            options: Options(headers: header.header()));
+    log(jsonEncode(response.data).toString());
     try {
       return HtmlModel.fromJson(response.data);
     } on DioException catch (e) {
       log("*****");
       log(e.toString());
-      throw Exception(e);
+      return HtmlModel.fromJson(jsonDecode("{\"content\":\"null\", \"updated_at\":\"2024-12-12 00:00\"}"));
+
+    }
+    catch(e){
+      return HtmlModel.fromJson(jsonDecode("{\"content\":\"null\", \"updated_at\":\"2024-12-12 00:00\"}"));
     }
   }
 }

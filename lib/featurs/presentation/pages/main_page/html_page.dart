@@ -3,6 +3,8 @@ import 'dart:developer';
 import 'package:app_day/featurs/presentation/providers/html_provider.dart';
 import 'package:app_day/featurs/presentation/widgets/colors_app.dart';
 import 'package:app_day/featurs/presentation/widgets/widget_mini/loading.dart';
+import 'package:app_day/featurs/presentation/widgets/widget_mini/size.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
@@ -36,6 +38,7 @@ class _HtmlPageState extends ConsumerState<HtmlPage> {
           widget.titleName,
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
+        centerTitle: true,
         backgroundColor: AppColors.appActiveColor,
         iconTheme: IconThemeData(color: Colors.white),
       ),
@@ -43,17 +46,53 @@ class _HtmlPageState extends ConsumerState<HtmlPage> {
         margin: EdgeInsets.all(20),
         child: SafeArea(
             child: htmlsState.when(data: (data) {
-          return SingleChildScrollView(
-            child: HtmlWidget(
-              data.content,
-              onTapUrl: (url) async {
-                final Uri ur = Uri.parse(url);
-                !await launchUrl(ur);
-                return true;
-              },
-              enableCaching: true,
-            ),
-          );
+          return data.content.toString() != "null"
+              ? SingleChildScrollView(
+
+                  child: HtmlWidget(
+                    data.content.toString(),
+                    onLoadingBuilder: (context, element, loadingProgress) => SizedBox(
+                      height: AppSize.h(context: context)*0.85,
+                      width: AppSize.w(context: context)*0.9,
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: appLoading(),
+                      ),
+                    ),
+                    onTapUrl: (url) async {
+                      final Uri ur = Uri.parse(url);
+                      !await launchUrl(ur);
+                      return true;
+                    },
+                    enableCaching: true,
+                  ),
+                )
+              : Center(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("noInformation".tr()),
+                      Text("ID => ${widget.idHtml}"),
+                      SizedBox(height: 30),
+                      MaterialButton(
+                        height: 50,
+                        minWidth: 200,
+                        color: AppColors.appActiveColor,
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        shape: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Text(
+                          "ok".tr(),
+                          style: TextStyle(
+                              color: AppColors.white100, fontWeight: FontWeight.w600),
+                        ),
+                      )
+                    ],
+                  ),
+                );
         }, error: (error, errorText) {
           return Center(child: Text(errorText.toString()));
         }, loading: () {

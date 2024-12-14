@@ -1,4 +1,5 @@
 import 'package:app_day/featurs/presentation/widgets/colors_app.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class Table1 extends StatefulWidget {
@@ -12,20 +13,19 @@ class _Table1State extends State<Table1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.white100,
       appBar: AppBar(
-        backgroundColor: AppColors.appActiveColor,
-        title: Text("Fuqarolarni qabul qilish jadvali",
-            style: TextStyle(
-                fontWeight: FontWeight.bold, color: AppColors.white100)),
-        iconTheme: IconThemeData(color: AppColors.white100)
-      ),
+          backgroundColor: AppColors.appActiveColor,
+          title: Text("tableSchedule".tr(),
+              style: TextStyle(
+                  fontWeight: FontWeight.bold, color: AppColors.white100)),
+          iconTheme: IconThemeData(color: AppColors.white100)),
       body: SafeArea(
-          child: Container(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Container(
+          decoration: BoxDecoration(color: AppColors.white100),
           child: Table(
-            border: TableBorder.all(),
+            border: TableBorder.all(borderRadius: BorderRadius.circular(8)),
             columnWidths: const {
               0: FlexColumnWidth(2), // Adjust column widths as needed
               1: FlexColumnWidth(2),
@@ -34,23 +34,27 @@ class _Table1State extends State<Table1> {
             children: [
               // Table header
               TableRow(
-                decoration: BoxDecoration(color: Colors.blueGrey),
+                decoration: BoxDecoration(
+                    color: AppColors.appActiveColor,
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(8),
+                        topRight: Radius.circular(8))),
                 children: [
                   Padding(
                     padding: EdgeInsets.all(8.0),
-                    child: Text('Lavozimi',
+                    child: Text("position".tr(),
                         style: TextStyle(
                             color: Colors.white, fontWeight: FontWeight.bold)),
                   ),
                   Padding(
                     padding: EdgeInsets.all(8.0),
-                    child: Text('F.I.Sh.',
+                    child: Text("nameFirstName".tr(),
                         style: TextStyle(
                             color: Colors.white, fontWeight: FontWeight.bold)),
                   ),
                   Padding(
                     padding: EdgeInsets.all(8.0),
-                    child: Text('Qabul kunlari',
+                    child: Text("dayTime".tr(),
                         style: TextStyle(
                             color: Colors.white, fontWeight: FontWeight.bold)),
                   ),
@@ -61,31 +65,15 @@ class _Table1State extends State<Table1> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text("Direktor"),
+                    child: Text("director".tr()),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text("Jumanazarov Akmal Ruzikulovich"),
+                    child: Text("f1".tr()),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text("Seshanba 10:00 dan 12:00 gacha"),
-                  ),
-                ],
-              ),
-              TableRow(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text("Direktorning birinchi o‘rinbosari"),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text("Abdukayumov Abdurauf Abdurashidovich"),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text("Chorshanba 10:00 dan 12:00 gacha"),
+                    child: Text("tuesdayTime".tr()),
                   ),
                 ],
               ),
@@ -93,15 +81,31 @@ class _Table1State extends State<Table1> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text("Direktor o‘rinbosari"),
+                    child: Text("deputyDirectorFirst".tr()),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text("Toxirov Odiljon Zoxidjonovich"),
+                    child: Text("f2".tr()),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text("Payshanba 10:00 dan 12:00 gacha"),
+                    child: Text("wednesdayTime".tr()),
+                  ),
+                ],
+              ),
+              TableRow(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text("deputyDirector".tr()),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text("f3".tr()),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text("thursdayTime".tr()),
                   ),
                 ],
               ),
@@ -110,15 +114,15 @@ class _Table1State extends State<Table1> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text("Direktor o‘rinbosari"),
+                    child: Text("deputyDirector".tr()),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text(' Mashanpin Timur Vasikovich'),
+                    child: Text("f4".tr()),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text("Juma 10:00 dan 12:00 gacha"),
+                    child: Text("fridayTime".tr()),
                   ),
                 ],
               )

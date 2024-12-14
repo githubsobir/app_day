@@ -14,7 +14,7 @@ Widget carouselMain({required BuildContext context, required WidgetRef ref}) {
     return CarouselSlider(
       options: CarouselOptions(
         autoPlay: true,
-        autoPlayAnimationDuration: Duration(milliseconds: 1700),
+        autoPlayAnimationDuration: Duration(seconds: 2),
         aspectRatio: 1.8,
         enlargeCenterPage: true,
       ),
@@ -61,7 +61,8 @@ Widget carouselMain({required BuildContext context, required WidgetRef ref}) {
                               borderRadius: BorderRadius.circular(5)),
                           child: Text(
                             DateFormat('kk:mm dd-MM-yyyy').format(
-                                DateTime.parse(item.updatedAt.toString())),
+                              DateTime.parse(item.updatedAt.toString()),
+                            ),
                             style: const TextStyle(
                               color: Colors.black,
                               fontSize: 12.0,
@@ -70,17 +71,20 @@ Widget carouselMain({required BuildContext context, required WidgetRef ref}) {
                           ),
                         ),
                         Container(
-                            margin: EdgeInsets.all(2),
-                            padding: EdgeInsets.fromLTRB(3, 1, 3, 1),
+                            margin: EdgeInsets.fromLTRB(0, 1, 0, 0),
+                            padding: EdgeInsets.fromLTRB(3, 1, 3, 0),
                             decoration: BoxDecoration(
                                 color: Colors.grey.shade300.withOpacity(0.91),
                                 borderRadius: BorderRadius.circular(5)),
-                            child: Text(
-                              item.title,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w600),
+                            child: Padding(
+                              padding:  EdgeInsets.fromLTRB(3, 0, 3, 0),
+                              child: Text(
+                                item.title,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold),
+                              ),
                             ))
                       ],
                     ),

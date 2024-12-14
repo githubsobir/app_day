@@ -24,9 +24,12 @@ class MainUrl {
   var box = AppSaved();
 
   Map<String, dynamic> header() {
+
     return {
       "Accept-Language": box.lang,
-      "": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJmb3Jtcy5zdGFuZGFydC51eiIsImF1ZCI6ImZvcm1zLnN0YW5kYXJ0LnV6IiwiaWF0IjoxNzMzMjI3NzQ0LCJuYmYiOjE3MzMyMjc3NDQsImV4cCI6MTczMzIzMTM0NCwiZGF0YSI6eyJ1c2VySWQiOjR9fQ.9QUAF_TCWfEAdEuy05TiyJNWfMetf5QDRWrhGbwn42M"
+      "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJmb3Jtcy5zdGFuZGFydC51eiIsImF1ZCI6ImZvcm1zLnN0YW5kYXJ0LnV6IiwiaWF0IjoxNzMzMjI3NzQ0LCJuYmYiOjE3MzMyMjc3NDQsImV4cCI6MTczMzIzMTM0NCwiZGF0YSI6eyJ1c2VySWQiOjR9fQ.9QUAF_TCWfEAdEuy05TiyJNWfMetf5QDRWrhGbwn42M"
     };
   }
+
+
 }
