@@ -32,7 +32,8 @@ class _NewsOpenState extends ConsumerState<NewsOpen> {
           iconTheme: IconThemeData(color: Colors.white),
         ),
         body: newsState.when(data: (data) {
-          return SafeArea(
+          return
+            SafeArea(
             child: Container(
               margin: EdgeInsets.all(15),
               child: Column(

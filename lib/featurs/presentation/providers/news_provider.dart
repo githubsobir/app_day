@@ -11,7 +11,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive/hive.dart';
 
 final newsProvider =
-    StateNotifierProvider<NewsNotifier, AsyncValue<List<News>>>(
+    StateNotifierProvider.autoDispose<NewsNotifier, AsyncValue<List<News>>>(
         (ref) => NewsNotifier(ref.read(getNewsUseCase)));
 
 class NewsNotifier extends StateNotifier<AsyncValue<List<News>>> {

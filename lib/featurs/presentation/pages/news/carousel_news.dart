@@ -96,9 +96,10 @@ Widget carouselMain({required BuildContext context, required WidgetRef ref}) {
         );
       }).toList(),
     );
+
   }, error: (error, errorText) {
     return Center(child: Text(errorText.toString()));
   }, loading: () {
-    return appLoading();
+    return loadingShimmerCarousel();
   });
 }

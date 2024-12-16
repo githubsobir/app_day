@@ -38,26 +38,30 @@ class _SubOrganState extends State<SubOrgan> {
           color: Colors.white,
         ),
         child: Table(
-          border: TableBorder.all(borderRadius: BorderRadius.circular(5)),
+          border: TableBorder.all(borderRadius: BorderRadius.circular(5), color: Colors.grey.shade400),
           columnWidths: const {
             0: FlexColumnWidth(2), // Adjust column widths as needed
             1: FlexColumnWidth(2),
           },
+
           children: [
             TableRow(
+
               decoration: BoxDecoration(
+
                   color: AppColors.appActiveColor,
-                  borderRadius: BorderRadius.circular(5)),
+                  borderRadius: BorderRadius.only(topRight: Radius.circular(5), topLeft: Radius.circular(5))),
               children: [
+
                 Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: EdgeInsets.fromLTRB(8, 15, 8, 15),
                   child: Text("orgName".tr(),
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           color: Colors.white, fontWeight: FontWeight.bold)),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: EdgeInsets.fromLTRB(8, 15, 8, 15),
                   child: Text("helLine".tr(),
                       textAlign: TextAlign.center,
                       style: TextStyle(

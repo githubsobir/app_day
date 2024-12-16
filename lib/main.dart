@@ -70,17 +70,17 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: AppColors.appActiveColor,
-      // Set the status bar color (iOS ignores this but still required)
       statusBarBrightness: Brightness.light,
-      // Light means dark text, Brightness.dark means light text
       statusBarIconBrightness:
       Brightness.dark, // Light or dark text/icons in the status bar
     ));
 
     return
       ConnectionNotifier(
+
           connectionNotificationOptions: const ConnectionNotificationOptions(
-              alignment: Alignment.bottomCenter,
+            height: 50,
+              alignment: Alignment.topCenter,
               disconnectedText: "Internet",
               connectedText: "Internet"),
           child:

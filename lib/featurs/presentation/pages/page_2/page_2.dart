@@ -23,6 +23,7 @@ class _Page2State extends ConsumerState<Page2> {
   Widget build(BuildContext context) {
     final items = ref.watch(filteredItemsProvider);
 
+log(items.toString());
     return Scaffold(
       appBar: AppBar(
           title: Text("search".tr(),
@@ -62,6 +63,7 @@ class _Page2State extends ConsumerState<Page2> {
                 onEditingComplete: () {},
               ),
             ),
+            items.isEmpty?SizedBox():
             Expanded(
               child: ListView.builder(
                 itemCount: items.length,

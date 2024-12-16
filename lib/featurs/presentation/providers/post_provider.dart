@@ -11,7 +11,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/adapters.dart';
 
-final postProvider = StateNotifierProvider<PostNotifier, AsyncValue<Post>>(
+final postProvider = StateNotifierProvider.autoDispose<PostNotifier, AsyncValue<Post>>(
   (ref) => PostNotifier(ref.read(getPostsUseCaseProvider)),
 );
 

@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:app_day/featurs/presentation/providers/html_provider.dart';
@@ -8,7 +9,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
-import 'package:photo_view/photo_view.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HtmlPage extends ConsumerStatefulWidget {
@@ -32,7 +32,7 @@ class _HtmlPageState extends ConsumerState<HtmlPage> {
   Widget build(BuildContext context) {
     final htmlsState = ref.watch(htmlProvider(widget.idHtml.toString()));
     return Scaffold(
-      backgroundColor: AppColors.white100,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(
           widget.titleName,
@@ -46,9 +46,10 @@ class _HtmlPageState extends ConsumerState<HtmlPage> {
         margin: EdgeInsets.all(20),
         child: SafeArea(
             child: htmlsState.when(data: (data) {
-          return data.content.toString() != "null"
-              ? SingleChildScrollView(
+          return
 
+            data.content.toString() != "null"
+              ? SingleChildScrollView(
                   child: HtmlWidget(
                     data.content.toString(),
                     onLoadingBuilder: (context, element, loadingProgress) => SizedBox(
@@ -58,13 +59,14 @@ class _HtmlPageState extends ConsumerState<HtmlPage> {
                         alignment: Alignment.center,
                         child: appLoading(),
                       ),
+
                     ),
                     onTapUrl: (url) async {
                       final Uri ur = Uri.parse(url);
                       !await launchUrl(ur);
                       return true;
                     },
-                    enableCaching: true,
+                    enableCaching: true
                   ),
                 )
               : Center(
@@ -101,22 +103,6 @@ class _HtmlPageState extends ConsumerState<HtmlPage> {
           );
         })),
       ),
-    );
-  }
-}
-
-class FullScreenImageDialog extends StatelessWidget {
-  final String imageUrl;
-
-  const FullScreenImageDialog({super.key, required this.imageUrl});
-
-  @override
-  Widget build(BuildContext context) {
-    return PhotoView(
-      imageProvider: NetworkImage(imageUrl),
-      // Display the image in full screen with zoom
-      backgroundDecoration: BoxDecoration(
-          color: Colors.black), // Black background for full-screen effect
     );
   }
 }

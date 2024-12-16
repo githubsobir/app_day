@@ -25,7 +25,7 @@ class _Table1State extends State<Table1> {
         child: Container(
           decoration: BoxDecoration(color: AppColors.white100),
           child: Table(
-            border: TableBorder.all(borderRadius: BorderRadius.circular(8)),
+            border: TableBorder.all(borderRadius: BorderRadius.circular(8), color: Colors.grey.shade400),
             columnWidths: const {
               0: FlexColumnWidth(2), // Adjust column widths as needed
               1: FlexColumnWidth(2),
@@ -41,20 +41,23 @@ class _Table1State extends State<Table1> {
                         topRight: Radius.circular(8))),
                 children: [
                   Padding(
-                    padding: EdgeInsets.all(8.0),
+                    padding: EdgeInsets.fromLTRB(8, 15, 8, 15),
                     child: Text("position".tr(),
+                        textAlign: TextAlign.center,
                         style: TextStyle(
                             color: Colors.white, fontWeight: FontWeight.bold)),
                   ),
                   Padding(
-                    padding: EdgeInsets.all(8.0),
+                    padding: EdgeInsets.fromLTRB(8, 15, 8, 15),
                     child: Text("nameFirstName".tr(),
+                        textAlign: TextAlign.center,
                         style: TextStyle(
                             color: Colors.white, fontWeight: FontWeight.bold)),
                   ),
                   Padding(
-                    padding: EdgeInsets.all(8.0),
+                    padding: EdgeInsets.fromLTRB(8, 15, 8, 15),
                     child: Text("dayTime".tr(),
+                        textAlign: TextAlign.center,
                         style: TextStyle(
                             color: Colors.white, fontWeight: FontWeight.bold)),
                   ),

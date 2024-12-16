@@ -1,3 +1,4 @@
+import 'package:app_day/core/urls.dart';
 import 'package:app_day/featurs/presentation/pages/page_3/contact_info.dart';
 import 'package:app_day/featurs/presentation/pages/page_3/sub_organ.dart';
 import 'package:app_day/featurs/presentation/pages/page_3/table_1.dart';
@@ -50,7 +51,7 @@ class _Page3State extends State<Page3> {
                             withNavBar: false,
                             // OPTIONAL VALUE. True by default.
                             pageTransitionAnimation:
-                            PageTransitionAnimation.cupertino);
+                                PageTransitionAnimation.cupertino);
                       },
                       leading: Text(
                         "1",
@@ -102,7 +103,7 @@ class _Page3State extends State<Page3> {
                             withNavBar: false,
                             // OPTIONAL VALUE. True by default.
                             pageTransitionAnimation:
-                            PageTransitionAnimation.cupertino);
+                                PageTransitionAnimation.cupertino);
                       },
                       leading: Text(
                         "3",
@@ -130,7 +131,7 @@ class _Page3State extends State<Page3> {
                             withNavBar: false,
                             // OPTIONAL VALUE. True by default.
                             pageTransitionAnimation:
-                            PageTransitionAnimation.cupertino);
+                                PageTransitionAnimation.cupertino);
                       },
                       leading: Text(
                         "4",
@@ -149,7 +150,7 @@ class _Page3State extends State<Page3> {
                         color: AppColors.grey,
                       ),
                     )),
-                SizedBox(height: 20),
+                SizedBox(height: 30),
                 Text(
                   "socialMedia".tr(),
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
@@ -159,9 +160,9 @@ class _Page3State extends State<Page3> {
                   child: Container(
                     height: 58,
                     decoration: BoxDecoration(
-                        color: Colors.grey.withOpacity(0.15),
+                        color: Colors.grey.withOpacity(0.07),
                         borderRadius: BorderRadius.circular(10)),
-                    width: AppSize.w(context: context) * 0.9,
+                    width: AppSize.w(context: context) * 0.95,
                     child: Center(
                       child: ListView(
                         shrinkWrap: true,
@@ -170,10 +171,12 @@ class _Page3State extends State<Page3> {
                         children: [
                           IconButton(
                               onPressed: () {
-                                _launchInBrowser(
-                                    Uri(scheme: 'https',
-                                        host: "facebook.com",
-                                        path: '/uzstandard'));
+                                _launchInBrowser(Uri(
+                                    scheme: 'https',
+                                    host: MainUrl
+                                        .urlSocialMedia["facebook"]?.keys.first,
+                                    path: MainUrl.urlSocialMedia["facebook"]
+                                        ?.values.first));
                               },
                               icon: Icon(FontAwesomeIcons.facebook,
                                   color: AppColors.appActiveColor, size: 40)),
@@ -182,10 +185,13 @@ class _Page3State extends State<Page3> {
                             onPressed: () {
                               // https://www.youtube.com/@uzstandard
 
-                              _launchInBrowser(
-                                  Uri(scheme: 'https',
-                                      host: "youtube.com",
-                                      path: '/@uzstandard'));
+                              _launchInBrowser(Uri(
+                                scheme: 'https',
+                                host: MainUrl
+                                    .urlSocialMedia["youtube"]?.keys.first,
+                                path: MainUrl
+                                    .urlSocialMedia["youtube"]?.values.first,
+                              ));
                             },
                             icon: Icon(FontAwesomeIcons.youtube,
                                 size: 40, color: AppColors.appActiveColor),
@@ -193,10 +199,13 @@ class _Page3State extends State<Page3> {
                           SizedBox(width: 20),
                           IconButton(
                             onPressed: () {
-                              _launchInBrowser(
-                                  Uri(scheme: 'https',
-                                      host: "t.me",
-                                      path: '/UzstandardChannel'));
+                              _launchInBrowser(Uri(
+                                scheme: 'https',
+                                host: MainUrl
+                                    .urlSocialMedia["telegram"]?.keys.first,
+                                path: MainUrl
+                                    .urlSocialMedia["telegram"]?.values.first,
+                              ));
                               // https://t.me/UzstandardChannel
                             },
                             icon: Icon(FontAwesomeIcons.telegram,
@@ -205,24 +214,27 @@ class _Page3State extends State<Page3> {
                           SizedBox(width: 20),
                           IconButton(
                               onPressed: () {
-                                // https://www./
-                                _launchInBrowser(
-                                    Uri(scheme: 'https',
-                                        host: "instagram.com",
-                                        path: '/uzstandard'));
-
+                                _launchInBrowser(Uri(
+                                  scheme: 'https',
+                                  host: MainUrl
+                                      .urlSocialMedia["instagram"]?.keys.first,
+                                  path: MainUrl.urlSocialMedia["instagram"]
+                                      ?.values.first,
+                                ));
                               },
                               icon: Icon(FontAwesomeIcons.instagram,
                                   size: 40, color: AppColors.appActiveColor)),
 
                           IconButton(
                               onPressed: () {
-                                _launchInBrowser(
-                                    Uri(scheme: 'https',
-                                        host: "x.com",
-                                        path: 'Uzstandard'));
+                                _launchInBrowser(Uri(
+                                  scheme: 'https',
+                                  host: MainUrl.urlSocialMedia["x"]?.keys.first,
+                                  path:
+                                      MainUrl.urlSocialMedia["x"]?.values.first,
+                                ));
                               },
-                              icon: Icon(FontAwesomeIcons.twitter,
+                              icon: Icon(FontAwesomeIcons.x,
                                   size: 40, color: AppColors.appActiveColor))
 
                           // https://x.com/Uzstandard
@@ -231,8 +243,9 @@ class _Page3State extends State<Page3> {
                     ),
                   ),
                 ),
-                Divider(thickness: 0.5,),
-
+                Divider(
+                  thickness: 0.5,
+                ),
               ],
             ),
           ),
@@ -247,7 +260,6 @@ class _Page3State extends State<Page3> {
     await launchUrl(launchUri);
   }
 
-
   Future<void> _launchInBrowser(Uri url) async {
     if (!await launchUrl(
       url,
@@ -256,6 +268,4 @@ class _Page3State extends State<Page3> {
       throw Exception('Could not launch $url');
     }
   }
-
-
 }

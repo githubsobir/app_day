@@ -21,12 +21,18 @@ class PostLocalDataSource {
   List<Datum> getCachedPostAllOneList() {
     final cachedData = box.get('posts');
     List<Datum> list = [];
-    for (var element in PostModel.fromJson(jsonDecode(cachedData)).data) {
-      for (var element2 in element.children) {
-        list.add(element2);
+    try {
+      for (var element in PostModel.fromJson(jsonDecode(cachedData)).data) {
+        for (var element2 in element.children) {
+          list.add(element2);
+        }
       }
-    }
 
-    return list;
+      return list;
+    } catch (e) {
+      // list datum defaoult qiymat qo'shib qaytarishim kerak shu yerda '
+      list.add(Datum(icon: "null", name: "null", id: "null", children: []));
+      return [];
+    }
   }
 }

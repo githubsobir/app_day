@@ -39,72 +39,6 @@ class _RootPageState extends ConsumerState<RootPage> {
   }
 
   var box = AppSaved();
-
-  // Future screenLock123() async {
-  //   await Future.delayed(const Duration(milliseconds: 10)).then((value) {
-  //     if ((box.localPasswordSwitch == "1" ||
-  //         ref.watch(refPasswordOnOff))) {
-  //       screenLock(
-  //           useBlur: true,
-  //           context: navigatorKey.currentContext!,
-  //           correctString: box.localPassword,
-  //           canCancel: false,
-  //           // footer: Row(
-  //           //   crossAxisAlignment: CrossAxisAlignment.end,
-  //           //   mainAxisAlignment: MainAxisAlignment.end,
-  //           //   children: [
-  //           //     GestureDetector(
-  //           //         onTap: () {
-  //           //           Navigator.pop(context);
-  //           //         },
-  //           //         child: Text(
-  //           //           "exet".tr(),
-  //           //           style: const TextStyle(fontWeight: FontWeight.bold),
-  //           //         )),
-  //           //     const SizedBox(width: 20),
-  //           //   ],
-  //           // ),
-  //           title: Text(
-  //             "currentPassword".tr(),
-  //             style: TextStyle(
-  //                 color: AppColors.appActiveColor, fontWeight: FontWeight.bold),
-  //           ),
-  //           customizedButtonChild: Icon(
-  //               Platform.isIOS ? Icons.face : Icons.fingerprint,
-  //               color: Colors.black),
-  //           customizedButtonTap: () async {
-  //             await authenticate();
-  //           },
-  //           deleteButton: Center(
-  //               child: Icon(
-  //                 CupertinoIcons.delete_left,
-  //                 color: Colors.black,
-  //               )),
-  //           config: const ScreenLockConfig(
-  //             backgroundColor: Colors.white,
-  //             textStyle: TextStyle(color: Colors.black),
-  //           ),
-  //           secretsConfig: const SecretsConfig(
-  //             secretConfig: SecretConfig(
-  //                 borderColor: Colors.black, enabledColor: Colors.black),
-  //           ),
-  //           keyPadConfig: KeyPadConfig(
-  //               buttonConfig: KeyPadButtonConfig(
-  //                   buttonStyle: OutlinedButton.styleFrom(
-  //                       shape: const CircleBorder(),
-  //                       backgroundColor: Colors.white,
-  //                       textStyle: const TextStyle(color: Colors.black)),
-  //                   foregroundColor: Colors.black)));
-  //
-  //       if (Platform.isIOS) {
-  //         Future.delayed(const Duration(seconds: 1)).then((value) {
-  //           !boolFaceDetectFuncStart ? authenticate() : {};
-  //         });
-  //       } else {}
-  //     }
-  //   });
-  // }
-
   bool boolFaceDetectFuncStart = false;
 
   @override
@@ -125,9 +59,14 @@ class _RootPageState extends ConsumerState<RootPage> {
           curve: Curves.linear,
           duration: Duration(milliseconds: 300)),
       decoration: NavBarDecoration(
-        border: Border.all(width: 0.4, color: Colors.grey),
+        boxShadow: [
+          BoxShadow(
+              color: AppColors.appActiveColor.withOpacity(0.2),
+              spreadRadius: 1,
+              blurRadius: 0.5)
+        ],
         borderRadius: const BorderRadius.only(
-            topRight: Radius.circular(20), topLeft: Radius.circular(20)),
+            topRight: Radius.circular(25), topLeft: Radius.circular(25)),
         colorBehindNavBar: AppColors.appActiveColor,
       ),
       navBarStyle: NavBarStyle.style6,
