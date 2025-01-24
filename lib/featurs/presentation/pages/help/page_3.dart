@@ -1,7 +1,7 @@
 import 'package:app_day/core/urls.dart';
-import 'package:app_day/featurs/presentation/pages/page_3/contact_info.dart';
-import 'package:app_day/featurs/presentation/pages/page_3/sub_organ.dart';
-import 'package:app_day/featurs/presentation/pages/page_3/table_1.dart';
+import 'package:app_day/featurs/presentation/pages/help/contact_info.dart';
+import 'package:app_day/featurs/presentation/pages/help/sub_organ.dart';
+import 'package:app_day/featurs/presentation/pages/help/table_1.dart';
 import 'package:app_day/featurs/presentation/widgets/colors_app.dart';
 import 'package:app_day/featurs/presentation/widgets/widget_mini/size.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -151,9 +151,12 @@ class _Page3State extends State<Page3> {
                       ),
                     )),
                 SizedBox(height: 30),
-                Text(
-                  "socialMedia".tr(),
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                Padding(
+                  padding: const EdgeInsets.only(left: 5),
+                  child: Text(
+                    "socialMedia".tr(),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                  ),
                 ),
                 SizedBox(height: 15),
                 Center(

@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:developer';
 
 import 'package:app_day/core/urls.dart';
@@ -15,7 +14,7 @@ class PostRemoteDataSource {
   Future<PostModel> getPosts() async {
     final response = await dio.get("${MainUrl.mainUrl}${MainUrl.mainPageUrl}",
         options: Options(headers: header.header()));
-    log("Oldi *9999");
+    log("getPosts()");
     try {
       return PostModel.fromJson(response.data);
     } catch (e) {

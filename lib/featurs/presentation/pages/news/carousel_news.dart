@@ -1,6 +1,7 @@
 import 'package:app_day/featurs/presentation/pages/news/new_open.dart';
 import 'package:app_day/featurs/presentation/providers/news_provider.dart';
 import 'package:app_day/featurs/presentation/widgets/widget_mini/loading.dart';
+import 'package:app_day/featurs/presentation/widgets/widget_mini/size.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -31,7 +32,7 @@ Widget carouselMain({required BuildContext context, required WidgetRef ref}) {
             );
           },
           child: Container(
-            height: 230,
+            height: AppSize.h(context: context)*0.3,
             margin: const EdgeInsets.all(5.0),
             child: Stack(
               children: <Widget>[
@@ -40,54 +41,50 @@ Widget carouselMain({required BuildContext context, required WidgetRef ref}) {
                   child: CachedNetworkImage(
                     imageUrl: item.url,
                     fit: BoxFit.fitWidth,
-                    height: 220,
                     width: double.infinity,
                     errorWidget: (context, url, error) => Icon(Icons.image),
                   ),
                 ),
-                SizedBox(
-                  height: 220,
-                  child: Align(
-                    alignment: Alignment.bottomRight,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Container(
-                          margin: EdgeInsets.fromLTRB(1, 1, 1, 0),
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.fromLTRB(1, 1, 1, 0),
+                        padding: EdgeInsets.fromLTRB(3, 1, 3, 0),
+                        decoration: BoxDecoration(
+                            color: Colors.grey.shade300.withOpacity(0.91),
+                            borderRadius: BorderRadius.circular(5)),
+                        child: Text(
+                          DateFormat('kk:mm dd-MM-yyyy').format(
+                            DateTime.parse(item.updatedAt.toString()),
+                          ),
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 12.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      Container(
+                          margin: EdgeInsets.fromLTRB(0, 1, 0, 0),
                           padding: EdgeInsets.fromLTRB(3, 1, 3, 0),
                           decoration: BoxDecoration(
                               color: Colors.grey.shade300.withOpacity(0.91),
                               borderRadius: BorderRadius.circular(5)),
-                          child: Text(
-                            DateFormat('kk:mm dd-MM-yyyy').format(
-                              DateTime.parse(item.updatedAt.toString()),
+                          child: Padding(
+                            padding:  EdgeInsets.fromLTRB(3, 0, 3, 0),
+                            child: Text(
+                              item.title,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
                             ),
-                            style: const TextStyle(
-                              color: Colors.black,
-                              fontSize: 12.0,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        Container(
-                            margin: EdgeInsets.fromLTRB(0, 1, 0, 0),
-                            padding: EdgeInsets.fromLTRB(3, 1, 3, 0),
-                            decoration: BoxDecoration(
-                                color: Colors.grey.shade300.withOpacity(0.91),
-                                borderRadius: BorderRadius.circular(5)),
-                            child: Padding(
-                              padding:  EdgeInsets.fromLTRB(3, 0, 3, 0),
-                              child: Text(
-                                item.title,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ))
-                      ],
-                    ),
+                          ))
+                    ],
                   ),
                 ),
               ],

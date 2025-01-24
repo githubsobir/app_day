@@ -1,8 +1,8 @@
 import 'package:app_day/core/hive_saved/hive_saved.dart';
 import 'package:app_day/featurs/presentation/pages/main_page/main_page.dart';
 import 'package:app_day/featurs/presentation/pages/main_page/state_main_page.dart';
-import 'package:app_day/featurs/presentation/pages/page_2/page_2.dart';
-import 'package:app_day/featurs/presentation/pages/page_3/page_3.dart';
+import 'package:app_day/featurs/presentation/pages/search/page_2.dart';
+import 'package:app_day/featurs/presentation/pages/help/page_3.dart';
 import 'package:app_day/featurs/presentation/widgets/colors_app.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -31,6 +31,8 @@ class _RootPageState extends ConsumerState<RootPage> {
   @override
   initState() {
     super.initState();
+    context.setLocale(Locale("uz", "UZ"));
+    box.lang = "uz";
     controller = PersistentTabController(initialIndex: 0);
     // if (widget.passwordOnOff == "1") {
     //   screenLock123();
@@ -97,7 +99,7 @@ List<PersistentBottomNavBarItem> navBarsItems() {
         Icons.manage_search_rounded,
         size: 30,
       ),
-      title: "search".tr(),
+      title: "help".tr(),
 
       // textStyle:
       // const TextStyle(color: Colors.black, fontWeight: FontWeight.bold),

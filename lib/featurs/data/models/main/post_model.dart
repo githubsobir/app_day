@@ -1,8 +1,7 @@
 import 'package:app_day/featurs/domain/entities/main_service.dart';
 
 class PostModel extends Post {
-  PostModel({required bool success, required List<DatumModel> data})
-      : super(success: success, data: data);
+  PostModel({required bool super.success, required List<DatumModel> super.data});
 
   factory PostModel.fromJson(Map<String, dynamic> json) {
     return PostModel(
@@ -20,8 +19,7 @@ class PostModel extends Post {
 }
 
 class DatumModel extends Datum {
-  DatumModel({required int id, required String name, String? icon, required List<DatumModel> children})
-      : super(id: id, name: name, icon: icon, children: children);
+  DatumModel({required int super.id, required String super.name, String? super.icon, required List<DatumModel> super.children});
 
   factory DatumModel.fromJson(Map<String, dynamic> json) {
     return DatumModel(

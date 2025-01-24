@@ -5,7 +5,7 @@ class MainUrl {
   var box = AppSaved();
 
   /// main url
-  static String mainUrl = "http://forms.standart.uz:8091";
+  static String mainUrl = "http://94.141.85.93:8091";
 
   /// main page url
   static String mainPageUrl = "/tree/index";

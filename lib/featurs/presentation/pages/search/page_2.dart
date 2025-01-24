@@ -1,6 +1,3 @@
-import 'dart:convert';
-import 'dart:developer';
-
 import 'package:app_day/featurs/presentation/pages/main_page/html_page.dart';
 import 'package:app_day/featurs/presentation/pages/main_page/service_page/service_page.dart';
 import 'package:app_day/featurs/presentation/providers/post_provider.dart';
@@ -23,10 +20,9 @@ class _Page2State extends ConsumerState<Page2> {
   Widget build(BuildContext context) {
     final items = ref.watch(filteredItemsProvider);
 
-log(items.toString());
     return Scaffold(
       appBar: AppBar(
-          title: Text("search".tr(),
+          title: Text("help".tr(),
               style: TextStyle(
                   color: AppColors.white100, fontWeight: FontWeight.bold)),
           backgroundColor: AppColors.appActiveColor,
@@ -43,7 +39,7 @@ log(items.toString());
                   FocusManager.instance.primaryFocus?.unfocus();
                 },
                 decoration: InputDecoration(
-                  hintText: "search".tr(),
+                  hintText: "help".tr(),
                   hintStyle: TextStyle(
                       fontWeight: FontWeight.w600, color: AppColors.grey),
                   prefixIcon: const Icon(Icons.search),
@@ -63,53 +59,53 @@ log(items.toString());
                 onEditingComplete: () {},
               ),
             ),
-            items.isEmpty?SizedBox():
-            Expanded(
-              child: ListView.builder(
-                itemCount: items.length,
-                itemBuilder: (context, index) {
-                  final item = items[index];
-                  return Card(
-                    margin: EdgeInsets.fromLTRB(15, 3, 15, 3),
-                    color: AppColors.white100,
-                    child: ListTile(
-                      onTap: () {
-                        log(jsonEncode(item).toString());
-                        item.children.isNotEmpty
-                            ? PersistentNavBarNavigator.pushNewScreen(
-                                context,
-                                screen: ServicePage(
-                                    name: item.name,
-                                    children: item.children),
-                                withNavBar: false,
-                                // OPTIONAL VALUE. True by default.
-                                pageTransitionAnimation:
-                                    PageTransitionAnimation.cupertino,
-                              )
-                            : PersistentNavBarNavigator.pushNewScreen(
-                                context,
-                                screen: HtmlPage(
-                                    idHtml: item.id.toString(),
-                                    titleName: item.name.toString()),
-                                withNavBar: false,
-                                // OPTIONAL VALUE. True by default.
-                                pageTransitionAnimation:
-                                    PageTransitionAnimation.cupertino,
-                              );
+            items.isEmpty
+                ? SizedBox()
+                : Expanded(
+                    child: ListView.builder(
+                      itemCount: items.length,
+                      itemBuilder: (context, index) {
+                        final item = items[index];
+                        return Card(
+                          margin: EdgeInsets.fromLTRB(15, 3, 15, 3),
+                          color: AppColors.white100,
+                          child: ListTile(
+                            onTap: () {
+                              item.children.isNotEmpty
+                                  ? PersistentNavBarNavigator.pushNewScreen(
+                                      context,
+                                      screen: ServicePage(
+                                          name: item.name,
+                                          children: item.children),
+                                      withNavBar: false,
+                                      // OPTIONAL VALUE. True by default.
+                                      pageTransitionAnimation:
+                                          PageTransitionAnimation.cupertino,
+                                    )
+                                  : PersistentNavBarNavigator.pushNewScreen(
+                                      context,
+                                      screen: HtmlPage(
+                                          idHtml: item.id.toString(),
+                                          titleName: item.name.toString()),
+                                      withNavBar: false,
+                                      // OPTIONAL VALUE. True by default.
+                                      pageTransitionAnimation:
+                                          PageTransitionAnimation.cupertino,
+                                    );
+                            },
+                            title: Text(
+                              item.name,
+                              style: TextStyle(fontWeight: FontWeight.w600),
+                            ),
+                            trailing: Icon(
+                              Icons.arrow_forward_ios_rounded,
+                              color: AppColors.grey,
+                            ),
+                          ),
+                        );
                       },
-                      title: Text(
-                        item.name,
-                        style: TextStyle(fontWeight: FontWeight.w600),
-                      ),
-                      trailing: Icon(
-                        Icons.arrow_forward_ios_rounded,
-                        color: AppColors.grey,
-                      ),
                     ),
-                  );
-                },
-              ),
-            ),
+                  ),
             SizedBox(height: 30),
           ],
         ),

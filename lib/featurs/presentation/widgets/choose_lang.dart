@@ -56,7 +56,6 @@ class _ChooseLangState extends State<ChooseLang> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.white100,
       appBar: AppBar(
         backgroundColor: AppColors.appActiveColor,
         elevation: 0,

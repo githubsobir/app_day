@@ -15,12 +15,10 @@ class HtmlRemoteDataSource {
 
   Future<HtmlModel> getHtmls(final String idService) async {
     log("${MainUrl.mainUrl}${MainUrl.htmlViewById}$idService");
-    log(jsonEncode(header.header()));
     final response =
         await dio.get("${MainUrl.mainUrl}${MainUrl.htmlViewById}$idService",
             // "${MainUrl.mainUrl}${MainUrl.htmlViewById}$idService",
             options: Options(headers: header.header()));
-    log(jsonEncode(response.data).toString());
     try {
       return HtmlModel.fromJson(response.data);
     } on DioException catch (e) {

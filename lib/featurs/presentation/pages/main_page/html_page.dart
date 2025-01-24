@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:developer';
 
 import 'package:app_day/featurs/presentation/providers/html_provider.dart';
@@ -46,53 +45,62 @@ class _HtmlPageState extends ConsumerState<HtmlPage> {
         margin: EdgeInsets.all(20),
         child: SafeArea(
             child: htmlsState.when(data: (data) {
-          return
-
-            data.content.toString() != "null"
+          return data.content.toString() != "null"
               ? SingleChildScrollView(
-                  child: HtmlWidget(
-                    data.content.toString(),
-                    onLoadingBuilder: (context, element, loadingProgress) => SizedBox(
-                      height: AppSize.h(context: context)*0.85,
-                      width: AppSize.w(context: context)*0.9,
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: appLoading(),
-                      ),
-
-                    ),
-                    onTapUrl: (url) async {
-                      final Uri ur = Uri.parse(url);
-                      !await launchUrl(ur);
-                      return true;
-                    },
-                    enableCaching: true
-                  ),
+                  child: HtmlWidget(data.content.toString(),
+                      onLoadingBuilder: (context, element, loadingProgress) =>
+                          SizedBox(
+                            height: AppSize.h(context: context) * 0.85,
+                            width: AppSize.w(context: context) * 0.9,
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: appLoading(),
+                            ),
+                          ),
+                      onTapUrl: (url) async {
+                        final Uri ur = Uri.parse(url);
+                        !await launchUrl(ur);
+                        return true;
+                      },
+                      enableCaching: true),
                 )
               : Center(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text("noInformation".tr()),
-                      Text("ID => ${widget.idHtml}"),
-                      SizedBox(height: 30),
-                      MaterialButton(
-                        height: 50,
-                        minWidth: 200,
-                        color: AppColors.appActiveColor,
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        shape: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Text(
-                          "ok".tr(),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "noInformation".tr(),
                           style: TextStyle(
-                              color: AppColors.white100, fontWeight: FontWeight.w600),
+                              fontSize: 20, fontWeight: FontWeight.bold),
                         ),
-                      )
-                    ],
+
+                        SizedBox(height: 40),
+                        MaterialButton(
+                          height: 50,
+                          minWidth: 200,
+                          color: AppColors.appActiveColor,
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          shape: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Text(
+                            "ok".tr(),
+                            style: TextStyle(
+                                color: AppColors.white100,
+                                fontWeight: FontWeight.w600),
+                          ),
+                        ),
+                        SizedBox(height: 20),
+
+                        Text(
+                          "ID => ${widget.idHtml}",
+                          style: TextStyle(fontSize: 10, color: Colors.grey.shade400),
+                        ),
+                      ],
+                    ),
                   ),
                 );
         }, error: (error, errorText) {
