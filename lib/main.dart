@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:app_day/core/hive_saved/hive_saved.dart';
 import 'package:app_day/featurs/presentation/pages/main_page/sent_message/sent_message.dart';
+import 'package:app_day/featurs/presentation/pages/root_page/root_page.dart';
 import 'package:app_day/featurs/presentation/widgets/colors_app.dart';
 import 'package:connection_notifier/connection_notifier.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -96,10 +97,10 @@ class _MyAppState extends State<MyApp> {
 
   Widget mainPage() {
     if (box.lang == "-" || box.lang.isEmpty) {
-      return SendMailMessage(); // RootPage(passwordOnOff: "1",);
+      return RootPage(passwordOnOff: "1");
       // return ChooseLang(windowId: "0");
     } else {
-      return SendMailMessage(); //RootPage(passwordOnOff: "1");
+      return RootPage(passwordOnOff: "1");
     }
   }
 }

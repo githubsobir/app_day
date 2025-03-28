@@ -39,6 +39,8 @@ class _SendMailMessageState extends ConsumerState<SendMailMessage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
+        backgroundColor: AppColors.appActiveColor,
+        iconTheme: IconThemeData(color: AppColors.white100),
         title: Text(
           "Xabar yuborish",
           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),

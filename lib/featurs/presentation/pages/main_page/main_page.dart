@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:app_day/featurs/presentation/pages/main_page/html_page.dart';
+import 'package:app_day/featurs/presentation/pages/main_page/sent_message/sent_message.dart';
 import 'package:app_day/featurs/presentation/pages/main_page/service_page/botton_sheet.dart';
 import 'package:app_day/featurs/presentation/pages/main_page/service_page/service_page.dart';
 import 'package:app_day/featurs/presentation/pages/news/carousel_news.dart';
@@ -13,6 +14,7 @@ import 'package:app_day/featurs/presentation/widgets/widget_mini/size.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:custom_refresh_indicator/custom_refresh_indicator.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:persistent_bottom_nav_bar_2/persistent_tab_view.dart';
@@ -63,6 +65,7 @@ class _MainPageState extends ConsumerState<MainPage> {
         ],
         backgroundColor: AppColors.appActiveColor,
       ),
+
       /// Vaqtincha yopilgan
       // drawer: Drawer(
       //   backgroundColor: Colors.white,
@@ -239,43 +242,57 @@ class _MainPageState extends ConsumerState<MainPage> {
                                             .length
                                             .toString());
 
-                                        list[index - 1]
+                                        if (list[index - 1]
                                                 .children[id2]
-                                                .children
-                                                .isNotEmpty
-                                            ? PersistentNavBarNavigator
-                                                .pushNewScreen(
-                                                context,
-                                                screen: ServicePage(
-                                                    name: list[index - 1]
-                                                        .children[id2]
-                                                        .name,
-                                                    children: list[index - 1]
-                                                        .children[id2]
-                                                        .children),
-                                                withNavBar: false,
-                                                // OPTIONAL VALUE. True by default.
-                                                pageTransitionAnimation:
-                                                    PageTransitionAnimation
-                                                        .cupertino,
-                                              )
-                                            : PersistentNavBarNavigator
-                                                .pushNewScreen(
-                                                context,
-                                                screen: HtmlPage(
-                                                    idHtml: list[index - 1]
-                                                        .children[id2]
-                                                        .id
-                                                        .toString(),
-                                                    titleName: list[index - 1]
-                                                        .children[id2].name
-                                                        .toString()),
-                                                withNavBar: false,
-                                                // OPTIONAL VALUE. True by default.
-                                                pageTransitionAnimation:
-                                                    PageTransitionAnimation
-                                                        .cupertino,
-                                              );
+                                                .id
+                                                .toString() ==
+                                            "371") {
+                                          PersistentNavBarNavigator.pushNewScreen(
+                                            context,
+                                            screen: SendMailMessage(),
+                                            withNavBar: false,
+                                            pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                                          );
+                                        } else {
+                                          list[index - 1]
+                                                  .children[id2]
+                                                  .children
+                                                  .isNotEmpty
+                                              ? PersistentNavBarNavigator
+                                                  .pushNewScreen(
+                                                  context,
+                                                  screen: ServicePage(
+                                                      name: list[index - 1]
+                                                          .children[id2]
+                                                          .name,
+                                                      children: list[index - 1]
+                                                          .children[id2]
+                                                          .children),
+                                                  withNavBar: false,
+                                                  // OPTIONAL VALUE. True by default.
+                                                  pageTransitionAnimation:
+                                                      PageTransitionAnimation
+                                                          .cupertino,
+                                                )
+                                              : PersistentNavBarNavigator
+                                                  .pushNewScreen(
+                                                  context,
+                                                  screen: HtmlPage(
+                                                      idHtml: list[index - 1]
+                                                          .children[id2]
+                                                          .id
+                                                          .toString(),
+                                                      titleName: list[index - 1]
+                                                          .children[id2]
+                                                          .name
+                                                          .toString()),
+                                                  withNavBar: false,
+                                                  // OPTIONAL VALUE. True by default.
+                                                  pageTransitionAnimation:
+                                                      PageTransitionAnimation
+                                                          .cupertino,
+                                                );
+                                        }
                                       },
                                       child: Container(
                                         height: 170,

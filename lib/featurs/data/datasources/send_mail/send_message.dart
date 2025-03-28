@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:app_day/core/urls.dart';
@@ -17,30 +18,27 @@ class SendMessageDataSourceImpl implements SendMessageDataSource {
   @override
   Future<SendMessageModel> sendData(
       SendMessageResponseModel sendMessage) async {
-    // final response = await dio.get("${MainUrl.mainUrl}${MainUrl.contacts}",
-    //     options: Options(headers: header.header()),
-    //     data: {
-    //       "email": sendMessage.mail,
-    //       "full_name": sendMessage.name,
-    //       "phone": sendMessage.phone,
-    //       "body": sendMessage.message
-    //     });
     try {
-      await Future.delayed(const Duration(seconds: 2));
-      // return SendMessageModel.fromJson(response.data);
-      return SendMessageModel.fromJson({
-
-
-            "id":"1",
-            "email":"mail@uz.uz",
-            "full_name":"fullName",
-            "phone":"phone",
-            "body":"body message",
-            "created_at":"12312123",
-            "updated_at":"12323123312",
-
-
-      });
+      final response = await dio.post("${MainUrl.mainUrl}${MainUrl.contacts}",
+          options: Options(headers: header.header()),
+          data: {
+            "email": sendMessage.mail,
+            "full_name": sendMessage.name,
+            "phone": sendMessage.phone,
+            "body": sendMessage.message
+          });
+      // await Future.delayed(const Duration(seconds: 2));
+      log(jsonEncode(response.data));
+      return SendMessageModel.fromJson(response.data);
+      // return SendMessageModel.fromJson({
+      //       "id":"1",
+      //       "email":"mail@uz.uz",
+      //       "full_name":"fullName",
+      //       "phone":"phone",
+      //       "body":"body message",
+      //       "created_at":"12312123",
+      //       "updated_at":"12323123312",
+      // });
     } catch (e) {
       log(e.toString());
       throw Exception(e);
