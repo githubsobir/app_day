@@ -6,6 +6,7 @@ import 'package:app_day/featurs/data/repositories/news/news.dart';
 import 'package:app_day/featurs/domain/entities/news.dart';
 import 'package:app_day/featurs/domain/repositories/news_repository.dart';
 import 'package:app_day/featurs/domain/usecases/get_news.dart';
+import 'package:app_day/featurs/presentation/providers/html_provider.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive/hive.dart';
@@ -41,8 +42,7 @@ final newsRemoteDataSourceProvider =
     Provider((ref) => NewsRemoteDataSource(ref.read(dioProvider)));
 final newsLocalDataSourceProvider =
     Provider((ref) => NewsLocalDataSource(ref.read(hiveBoxProvider)));
-final dioProvider = Provider((ref) => Dio());
-final hiveBoxProvider = Provider((ref) => Hive.box('standartk'));
+
 
 final newsRepositoryProvider = Provider<NewsRepository>((ref) {
   final remoteDataSource = ref.read(newsRemoteDataSourceProvider);

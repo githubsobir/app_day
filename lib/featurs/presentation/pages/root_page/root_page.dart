@@ -99,7 +99,7 @@ List<PersistentBottomNavBarItem> navBarsItems() {
         Icons.manage_search_rounded,
         size: 30,
       ),
-      title: "help".tr(),
+      title: "search".tr(),
 
       // textStyle:
       // const TextStyle(color: Colors.black, fontWeight: FontWeight.bold),

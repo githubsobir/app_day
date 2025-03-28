@@ -96,7 +96,7 @@
   "chooseLang": "Tilni tanlang",
   "allStories": "Barcha e'lonlar",
   "publish": "E'lon qilish",
-  "storesMessage": "Hikoya xabari",
+  "storesMessage": "Xabar",
   "deleteAccount": "Hisobni o'chirish",
   "deleteAccountText": "Hisobni o'chirish uchun. Maxsus saytga ro'yxatdan o'tgan raqamingizni kiriting raqamingizga sms orqali maxsus kod yuboriladi keyingi qadamda maxsus kodni tizimga kiritish orqali hisobingiz o’chiriladi. \nHisobni o'chirish?",
   "face_center": "Yuz markazda bo'lsin",
@@ -170,5 +170,6 @@
   "f2": "Abdukayumov Abdurauf Abdurashidovich",
   "f3": "Toxirov Odiljon Zoxidjonovich",
   "f4": "Mashanpin Timur Vasikovich",
-  "socialMedia": "Ijtimoiy tarmoqlar"
+  "socialMedia": "Ijtimoiy tarmoqlar",
+  "enterInformation": "Ma'lumot kiriting"
 }

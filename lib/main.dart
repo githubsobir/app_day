@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:app_day/core/hive_saved/hive_saved.dart';
-import 'package:app_day/featurs/presentation/pages/root_page/root_page.dart';
+import 'package:app_day/featurs/presentation/pages/main_page/sent_message/sent_message.dart';
 import 'package:app_day/featurs/presentation/widgets/colors_app.dart';
 import 'package:connection_notifier/connection_notifier.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -22,7 +22,6 @@ class MyHttpOverrides extends HttpOverrides {
 // GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
-
   WidgetsFlutterBinding.ensureInitialized();
   HttpOverrides.global = MyHttpOverrides();
 
@@ -38,7 +37,7 @@ void main() async {
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]).then(
-        (_) => runApp(
+    (_) => runApp(
       EasyLocalization(
         supportedLocales: const [
           Locale('kk', 'KK'),
@@ -71,39 +70,36 @@ class _MyAppState extends State<MyApp> {
       statusBarColor: AppColors.appActiveColor,
       statusBarBrightness: Brightness.light,
       statusBarIconBrightness:
-      Brightness.dark, // Light or dark text/icons in the status bar
+          Brightness.dark, // Light or dark text/icons in the status bar
     ));
 
-    return
-      ConnectionNotifier(
-          connectionNotificationOptions: const ConnectionNotificationOptions(
+    return ConnectionNotifier(
+        connectionNotificationOptions: const ConnectionNotificationOptions(
             height: 50,
-              alignment: Alignment.topCenter,
-              disconnectedText: "Internet",
-              connectedText: "Internet"),
-          child:
-          MaterialApp(
-            localizationsDelegates: context.localizationDelegates,
-            supportedLocales: context.supportedLocales,
-            locale: context.locale,
-            // navigatorKey: navigatorKey,
-            theme: ThemeData(
-                fontFamily: "Nunito",
-                appBarTheme: AppBarTheme(
-                  backgroundColor: AppColors.appActiveColor,
-                )),
-            debugShowCheckedModeBanner: false,
-            home: mainPage(),
-          )
-    ); //RootPage()
+            alignment: Alignment.topCenter,
+            disconnectedText: "Internet",
+            connectedText: "Internet"),
+        child: MaterialApp(
+          localizationsDelegates: context.localizationDelegates,
+          supportedLocales: context.supportedLocales,
+          locale: context.locale,
+          // navigatorKey: navigatorKey,
+          theme: ThemeData(
+              fontFamily: "Nunito",
+              appBarTheme: AppBarTheme(
+                backgroundColor: AppColors.appActiveColor,
+              )),
+          debugShowCheckedModeBanner: false,
+          home: mainPage(),
+        )); //RootPage()
   }
 
   Widget mainPage() {
     if (box.lang == "-" || box.lang.isEmpty) {
-      return RootPage(passwordOnOff: "1",);
+      return SendMailMessage(); // RootPage(passwordOnOff: "1",);
       // return ChooseLang(windowId: "0");
-    }  else {
-      return RootPage(passwordOnOff: "1");
+    } else {
+      return SendMailMessage(); //RootPage(passwordOnOff: "1");
     }
   }
 }

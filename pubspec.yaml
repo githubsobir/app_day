@@ -1,7 +1,7 @@
 name: app_day
 description: "A new Flutter project."
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-version: 1.0.2+4
+version: 1.0.2+5
 
 environment:
   sdk: ^3.5.4
@@ -22,10 +22,12 @@ dependencies:
   flutter_widget_from_html_core: ^0.15.2
   url_launcher: ^6.3.1
   font_awesome_flutter: ^10.8.0
+  dartz:
 #  photo_view: ^0.15.0
   loading_indicator: ^3.1.1
   fade_shimmer: ^2.3.0
   custom_refresh_indicator: ^4.0.1
+  local_captcha: ^1.0.4
 
 
 dev_dependencies:

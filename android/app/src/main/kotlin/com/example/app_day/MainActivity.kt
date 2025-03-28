@@ -1,4 +1,4 @@
-package uz.standart.komakchi
+package uz.standart.komakchi2
 
 import io.flutter.embedding.android.FlutterActivity
 

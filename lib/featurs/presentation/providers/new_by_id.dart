@@ -6,6 +6,7 @@ import 'package:app_day/featurs/data/repositories/news_by_id/new_by_id_rep.dart'
 import 'package:app_day/featurs/domain/entities/news_by_id.dart';
 import 'package:app_day/featurs/domain/repositories/new_by_id.dart';
 import 'package:app_day/featurs/domain/usecases/get_new_by_id.dart';
+import 'package:app_day/featurs/presentation/providers/html_provider.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive/hive.dart';
@@ -50,8 +51,7 @@ final newByIdRepositoryProvider =
   );
 });
 
-final dioProvider = Provider((ref) => Dio());
-final hiveBoxProvider = Provider((ref) => Hive.box('standartk'));
+
 
 final newByIdRemoteDataSourceProvider =
     Provider((ref) => NewByIdRemoteDataSource(ref.read(dioProvider)));

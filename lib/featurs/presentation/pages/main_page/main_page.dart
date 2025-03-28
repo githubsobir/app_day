@@ -238,6 +238,7 @@ class _MainPageState extends ConsumerState<MainPage> {
                                             .children
                                             .length
                                             .toString());
+
                                         list[index - 1]
                                                 .children[id2]
                                                 .children
