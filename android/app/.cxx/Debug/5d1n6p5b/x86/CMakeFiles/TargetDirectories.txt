@@ -1,0 +1,2 @@
+/Users/uzbmb/StudioProjects/app_day/android/app/.cxx/Debug/5d1n6p5b/x86/CMakeFiles/edit_cache.dir
+/Users/uzbmb/StudioProjects/app_day/android/app/.cxx/Debug/5d1n6p5b/x86/CMakeFiles/rebuild_cache.dir
